@@ -39,10 +39,6 @@ public class BeanFactory {
         return beans.values();
     }
 
-//    public Reflections getReflections() {
-//        return reflections;
-//    }
-
     private void tryAddBean(Class<?> clazz) {
         try {
             Component annotation = clazz.getAnnotation(Component.class);

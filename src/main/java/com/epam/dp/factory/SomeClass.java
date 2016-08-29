@@ -18,4 +18,12 @@ public class SomeClass {
     public int getRandom() {
         return random;
     }
+
+    @Override
+    public String toString() {
+        return "SomeClass{" +
+                "test='" + test + '\'' +
+                ", random=" + random +
+                '}';
+    }
 }

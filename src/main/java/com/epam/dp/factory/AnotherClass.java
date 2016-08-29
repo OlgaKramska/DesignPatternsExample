@@ -12,4 +12,11 @@ public class AnotherClass {
     public int getRandom() {
         return random;
     }
+
+    @Override
+    public String toString() {
+        return "AnotherClass{" +
+                "random=" + random +
+                '}';
+    }
 }

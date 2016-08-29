@@ -12,19 +12,22 @@ public class InjectRandomIntBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public void beanPostCreateMethod(Object bean) {
-        Field[] fields = bean.getClass().getFields();
-//        for (Field field : fields) {
-        for (int i = 0; i < fields.length; i++) {
-            tryToSetInt(bean, fields[i]);
+        Field[] fields = bean.getClass().getDeclaredFields();
+
+        for (Field field : fields) {
+            tryToSetInt(bean, field);
         }
     }
 
     private void tryToSetInt(Object bean, Field field) {
         if (field.getAnnotation(InjectRandomInt.class) != null) {
             try {
+                field.setAccessible(true);
                 field.setInt(bean, random.nextInt());
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
+            } finally {
+                field.setAccessible(false);//TODO Is it needed??
             }
         }
     }
