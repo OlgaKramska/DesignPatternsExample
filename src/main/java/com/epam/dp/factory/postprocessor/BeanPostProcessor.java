@@ -1,4 +1,4 @@
-package com.epam.dp.factory;
+package com.epam.dp.factory.postprocessor;
 
 /**
  * Created by Olga_Kramska on 8/29/2016.

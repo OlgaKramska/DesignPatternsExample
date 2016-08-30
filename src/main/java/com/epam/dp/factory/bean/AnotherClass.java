@@ -1,4 +1,7 @@
-package com.epam.dp.factory;
+package com.epam.dp.factory.bean;
+
+import com.epam.dp.factory.Component;
+import com.epam.dp.factory.InjectRandomInt;
 
 /**
  * Created by Olga_Kramska on 8/29/2016.

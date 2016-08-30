@@ -1,5 +1,8 @@
-package com.epam.dp.factory;
+package com.epam.dp.factory.postprocessor.impl;
 
+
+import com.epam.dp.factory.InjectRandomInt;
+import com.epam.dp.factory.postprocessor.BeanPostProcessor;
 
 import java.lang.reflect.Field;
 import java.util.Random;
