@@ -1,7 +1,7 @@
 package com.epam.dp.factory.bean;
 
-import com.epam.dp.factory.Component;
-import com.epam.dp.factory.InjectRandomInt;
+import com.epam.dp.factory.annotation.Component;
+import com.epam.dp.factory.annotation.InjectRandomInt;
 
 /**
  * Created by Olga_Kramska on 8/29/2016.

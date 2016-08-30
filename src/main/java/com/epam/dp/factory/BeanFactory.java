@@ -1,8 +1,8 @@
 package com.epam.dp.factory;
 
+import com.epam.dp.factory.annotation.Component;
 import org.reflections.Reflections;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /**
@@ -13,7 +13,6 @@ public class BeanFactory {
     private Reflections reflections =
             new Reflections("com.epam.dp.factory");
     private Map<String, Object> beans = new HashMap<>();
-//    private List<Object> postProcessors = new ArrayList<>();
 
     {
         Set<Class<?>> annotatedWith = reflections
@@ -21,13 +20,6 @@ public class BeanFactory {
 
         for (Class<?> clazz : annotatedWith) {
             tryAddBean(clazz);
-        }
-    }
-
-    {
-        Set<Class<? extends BeanPostProcessor>> subTypesOf = reflections.getSubTypesOf(BeanPostProcessor.class);
-        for (Class<?> clazz : subTypesOf) {
-            tryPostCreateMethod((Class<? extends BeanPostProcessor>) clazz, getBeans());
         }
     }
 
@@ -39,6 +31,10 @@ public class BeanFactory {
         return beans.values();
     }
 
+    public Reflections getReflections() {
+        return reflections;
+    }
+
     private void tryAddBean(Class<?> clazz) {
         try {
             Component annotation = clazz.getAnnotation(Component.class);
@@ -46,24 +42,6 @@ public class BeanFactory {
             beans.put(annotation.value(), clazz.newInstance());
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
-        }
-    }
-
-//    private void tryAddPostProcessor(Class<?> clazz) {
-//        try {
-//            postProcessors.add(clazz.newInstance());
-//        } catch (InstantiationException | IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-    private void tryPostCreateMethod(Class<? extends BeanPostProcessor> beanPostProcessor, Collection<Object> beans) {
-        for (Object bean : beans) {
-            try {
-                beanPostProcessor.getMethod("beanPostCreateMethod", Object.class).invoke(beanPostProcessor.newInstance(), bean);
-            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | InstantiationException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

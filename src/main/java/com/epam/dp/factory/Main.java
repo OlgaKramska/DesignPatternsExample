@@ -6,8 +6,8 @@ package com.epam.dp.factory;
 public class Main {
 
     public static void main(String[] args) {
-        BeanFactory factory = new BeanFactory();
-        System.out.println(factory.getBean("SomeClass"));
-        System.out.println(factory.getBean("AnotherClass"));
+        ApplicationContext context = new ApplicationContext();
+        System.out.println(context.getBean("SomeClass"));
+        System.out.println(context.getBean("AnotherClass"));
     }
 }

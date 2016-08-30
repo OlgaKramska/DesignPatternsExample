@@ -1,7 +1,7 @@
 package com.epam.dp.factory.postprocessor.impl;
 
 
-import com.epam.dp.factory.InjectRandomInt;
+import com.epam.dp.factory.annotation.InjectRandomInt;
 import com.epam.dp.factory.postprocessor.BeanPostProcessor;
 
 import java.lang.reflect.Field;
@@ -29,8 +29,6 @@ public class InjectRandomIntBeanPostProcessor implements BeanPostProcessor {
                 field.setInt(bean, random.nextInt());
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
-            } finally {
-                field.setAccessible(false);//TODO Is it needed??
             }
         }
     }
